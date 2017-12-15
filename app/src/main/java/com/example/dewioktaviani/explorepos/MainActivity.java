@@ -4,21 +4,25 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.dewioktaviani.explorepos.Data.common.clsItem;
+import com.example.dewioktaviani.explorepos.Data.repo.clsItemRepo;
 import com.example.dewioktaviani.explorepos.Fragment.FragmentInventory;
 import com.example.dewioktaviani.explorepos.Fragment.FragmentSales;
+
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +40,15 @@ public class MainActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
         }
-
+        clsItem item = new clsItem();
+        item.setBitActive(1);
+        item.setTxtCategory("2");
+        item.setTxtItemCode("asdsd");
+        try {
+            new clsItemRepo(getApplicationContext()).create(item);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
             pInfo = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {

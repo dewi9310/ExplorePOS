@@ -4,14 +4,13 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Dewi Oktaviani on 12/14/2017.
  */
 @DatabaseTable
 public class clsItem implements Serializable {
-    @DatabaseField(id = true, columnName = "itemId")
+    @DatabaseField(generatedId = true, columnName = "itemId")
     private int itemId;
     @DatabaseField (columnName = "txtItemCode")
     private String txtItemCode;

@@ -14,11 +14,16 @@ public class DatabaseManager {
 
         }
     }
-    static public DatabaseManager getInstance(){return instance;}
+    static public DatabaseManager getInstance(){
+        return instance;
+    }
     private DatabaseHelper helper;
 
     private DatabaseManager(Context context){
         helper = new DatabaseHelper(context);
     }
-    public DatabaseHelper getHelper(){return helper;}
+
+    public DatabaseHelper getHelper(){
+        return helper;
+    }
 }

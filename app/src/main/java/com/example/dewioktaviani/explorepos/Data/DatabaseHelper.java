@@ -18,13 +18,11 @@ import java.sql.SQLException;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper{
     private static final String DATABASE_NAME = "tesPOP.db";
-    private static final int DATABASE_VERSION =11;
+    private static final int DATABASE_VERSION =1;
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
     protected Dao<clsItem, Integer> mItemDao;
-
 
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
