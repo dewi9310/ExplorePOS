@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/icon_group">
+
+        <item
+            android:id="@+id/inventory"
+            android:checked="true"
+            android:title="Inventory"
+            android:orderInCategory="0"
+            app:actionLayout="@layout/menu_counter"/>
+        <item
+            android:id="@+id/sales"
+            android:checked="true"
+            android:title="Sales"
+            android:orderInCategory="0"
+            app:actionLayout="@layout/menu_counter"/>
+
+        <item
+            android:id="@+id/report"
+            android:checked="true"
+            android:title="Report"
+            android:orderInCategory="0"
+            app:actionLayout="@layout/menu_counter"/>
+
+    </group>
+</menu>
