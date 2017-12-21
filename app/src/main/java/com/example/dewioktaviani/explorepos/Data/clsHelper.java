@@ -15,7 +15,7 @@ import java.io.OutputStream;
 
 public class clsHelper {
     public String copydb(Context context) throws IOException{
-        String CURRENT_DATABASE_PATH = "data/data/" + context.getPackageName() + "/databases/tesPOP.db";
+        String CURRENT_DATABASE_PATH = "data/data/" + context.getPackageName() + "/databases/tesPOS.db";
 
         try {
             File dbFile = new File(CURRENT_DATABASE_PATH);

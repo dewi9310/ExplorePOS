@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper{
-    private static final String DATABASE_NAME = "tesPOP.db";
+    private static final String DATABASE_NAME = "tesPOS.db";
     private static final int DATABASE_VERSION =1;
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,16 +36,32 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
+        Dao<clsItem, Integer> dao = null;
         try {
-            Log.i(DatabaseHelper.class.getName(), "onUpgrade");
-            TableUtils.dropTable(connectionSource, clsItem.class, true);
-
-            //after we drop the old databases, we create the new ones
-            onCreate(database, connectionSource);
+            dao = getmItemDao();
+            if (oldVersion < 2) {
+                // we added the age column in version 2
+                dao.executeRaw("ALTER TABLE `clsItem` ADD COLUMN txtTes TEXT;");
+            }
+            if (oldVersion < 3) {
+                // we added the weight column in version 3
+                dao.executeRaw("ALTER TABLE `clsItem` ADD COLUMN txtTes2 TEXT;");
+            }
         } catch (SQLException e) {
-            Log.e(DatabaseHelper.class.getName(), "Can't drop database", e);
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+
+
+//        try {
+//            Log.i(DatabaseHelper.class.getName(), "onUpgrade");
+//            TableUtils.dropTable(connectionSource, clsItem.class, true);
+//
+//            //after we drop the old databases, we create the new ones
+//            onCreate(database, connectionSource);
+//        } catch (SQLException e) {
+//            Log.e(DatabaseHelper.class.getName(), "Can't drop database", e);
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void clearAllDataInDatabase(){
